@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your cogent: cheat sheet</title>
+<style>
+  @page { size: Letter; margin: 0; }
+  :root {
+    --paper:#FBF8F3; --ink:#1E2430; --muted:#5E6675; --line:#E7E1D7;
+    --teal:#0E6B66; --teal-soft:#E3F1EF; --amber:#C9821F; --amber-soft:#FBEFD9;
+    --plum:#6E3B6B; --plum-soft:#F2E6F1; --card:#FFFFFF;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { background:#E9E5DE; }
+  body { font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif; color:var(--ink);
+         font-size:9.6pt; line-height:1.38; -webkit-font-smoothing:antialiased; }
+  .page { width:8.5in; min-height:11in; margin:24px auto; background:var(--paper);
+          padding:0.42in 0.5in 0.36in; box-shadow:0 10px 40px rgba(30,36,48,.18); border-radius:4px;
+          display:flex; flex-direction:column; gap:12px; }
+  @media print { html { background:none; } .page { margin:0; box-shadow:none; border-radius:0; height:11in; } }
+
+  /* Header */
+  header { display:grid; grid-template-columns: 1fr 2.55in; gap:22px; align-items:center; }
+  .eyebrow { font-size:7.6pt; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--teal); }
+  h1 { font-family:"New York","Iowan Old Style",Georgia,serif; font-weight:700; font-size:27pt; line-height:1.05;
+       letter-spacing:-.01em; margin:5px 0 7px; }
+  .lede { color:var(--muted); font-size:10.4pt; max-width:4.4in; }
+  .lede b { color:var(--ink); }
+  .chat { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:11px 12px 12px;
+          box-shadow:0 2px 0 rgba(30,36,48,.03); }
+  .chat .who { font-size:7.2pt; font-weight:700; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; margin-bottom:6px; }
+  .bubble { border-radius:12px; padding:7px 10px; font-size:9pt; line-height:1.32; margin-top:5px; width:fit-content; max-width:100%; }
+  .bubble.them { background:var(--teal-soft); color:#0B4D4A; border-bottom-left-radius:4px; }
+  .bubble.you { background:var(--ink); color:#fff; margin-left:auto; border-bottom-right-radius:4px; }
+
+  h2 { font-size:8pt; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+       display:flex; align-items:center; gap:10px; margin-bottom:9px; }
+  section:nth-of-type(1) h2 { color:var(--teal); }
+  h2::after { content:""; flex:1; height:1px; background:var(--line); }
+
+  /* Steps */
+  .steps { display:grid; grid-template-columns:1fr 1fr 1.55fr; gap:10px; }
+  .step { background:var(--card); border:1.5px solid #B9D8D4; border-radius:12px; padding:12px 13px; display:flex; gap:11px; align-items:flex-start; }
+  .num { flex:none; width:30px; height:30px; border-radius:50%; background:var(--teal); color:#fff; font-weight:800;
+         display:grid; place-items:center; font-size:12pt; }
+  .step b { display:block; font-size:10.4pt; margin-bottom:2px; white-space:nowrap; }
+  .step span { color:var(--muted); font-size:9pt; }
+  .step .say { color:#fff; }
+  .say { display:inline-block; line-height:1.3; border-radius:10px !important; background:var(--ink); color:#fff; border-radius:999px; padding:4px 10px; font-weight:600; font-size:8.6pt;
+         font-size:9pt; margin-top:3px; }
+  .after { margin-top:8px; color:var(--muted); font-size:9pt; }
+  .after b { color:var(--ink); }
+
+  /* Advantages */
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 12px; display:grid;
+          grid-template-columns:30px 1fr; gap:3px 10px; align-items:start; }
+  .icon { grid-row:span 3; width:30px; height:30px; border-radius:9px; background:var(--teal-soft); display:grid; place-items:center; }
+  .icon svg { width:17px; height:17px; stroke:var(--teal); fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+  .card.t2 .icon { background:var(--amber-soft); } .card.t2 .icon svg { stroke:#A8680F; }
+  .card.t3 .icon { background:var(--plum-soft); } .card.t3 .icon svg { stroke:var(--plum); }
+  .card h3 { font-size:10pt; font-weight:700; display:flex; align-items:center; gap:7px; }
+  .tag { font-size:6.8pt; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:1.5px 6px; border-radius:999px; }
+  .t2 .tag { background:var(--amber-soft); color:#8A560C; } .t3 .tag { background:var(--plum-soft); color:var(--plum); }
+  .card p { color:var(--muted); font-size:8.8pt; }
+  .quote { font-size:8.8pt; color:var(--ink); }
+  .quote em { font-style:normal; background:#F1EEE8; border-radius:6px; padding:1px 6px; font-weight:600; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+  .quote em.nw, code { white-space:nowrap; }
+  .quote em.long { display:inline-block; white-space:nowrap; font-size:8.4pt; padding:1px 5px; margin-top:2px; }
+  code { font-family:"SF Mono",Menlo,monospace; font-size:8.3pt; background:#F1EEE8; border-radius:5px; padding:1px 5px; }
+
+
+  /* Commands */
+  .cmds { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .cmd { font-family:"SF Mono",Menlo,monospace; font-size:8.4pt; font-weight:600; background:var(--card); border:1px solid var(--line);
+         border-radius:8px; padding:4px 8px; }
+  .cmd small { font-family:-apple-system,"Helvetica Neue",sans-serif; font-weight:500; color:var(--muted); font-size:7.8pt; margin-left:5px; }
+  .cmds .hint { color:var(--muted); font-size:8.6pt; margin-left:4px; }
+  .cmds .hint em { font-style:normal; font-weight:600; color:var(--ink); }
+
+  /* Control */
+  .control { background:#273142; color:#EEF1F6; border-radius:14px; padding:12px 16px 13px; display:grid; grid-template-columns:1fr 1fr; gap:7px 22px; }
+  .control h2 { grid-column:1/-1; color:#B4C4D6; margin-bottom:2px; } .control h2::after { background:#36404F; }
+  .ctl { display:flex; gap:9px; align-items:flex-start; font-size:9.2pt; }
+  .ctl svg { flex:none; width:15px; height:15px; margin-top:1px; stroke:#7FD1C7; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .ctl b { color:#fff; }
+  .control code { background:#2E3746; color:#fff; }
+  .ask { grid-column:1/-1; display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:4px; padding-top:9px; border-top:1px solid #36404F; font-size:8.6pt; color:#9FB3C8; }
+  .ask span.q { background:#2E3746; color:#fff; border-radius:999px; padding:3px 10px; font-weight:600; }
+
+  footer { margin-top:auto; display:flex; justify-content:space-between; color:#6B7280; font-size:8pt; padding-top:2px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="eyebrow">Cheat sheet</div>
+      <h1>Meet your cogent</h1>
+      <p class="lede">Your own agent, built on the Claude Code you already use. Plain Claude Code starts fresh every time. <b>Your cogent knows you, remembers, and keeps what it learns.</b></p>
+    </div>
+    <div class="chat" aria-label="What the first conversation looks like">
+      <div class="who">Your first conversation</div>
+      <div class="bubble you">set up my cogent from the cogent&#8209;howto folder in my Downloads</div>
+      <div class="bubble them">I'm new and know nothing yet. What would you like to call me?</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Bring it to life (once)</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><b>Double-click the zip</b><span>It opens into Downloads.</span></div></div>
+      <div class="step"><div class="num">2</div><div><b>Open Claude Code</b><span>The way you always do.</span></div></div>
+      <div class="step"><div class="num">3</div><div><b>Type this</b><span class="say">set up my cogent from the cogent&#8209;howto folder in my Downloads</span></div></div>
+    </div>
+    <p class="after">It names itself with you, learns how you work, then builds itself step by step. <b>Nothing changes without your yes.</b> It tells you exactly what to click and type.</p>
+  </section>
+
+  <section>
+    <h2>What it gives you, and how to use it</h2>
+    <div class="grid">
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>
+        <h3>It knows you</h3><p>Its name, your role, how you like things explained.</p>
+        <div class="quote">Tell it once how you want something done.</div></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></div>
+        <h3>It learns</h3><p>Corrections become written rules it follows from then on.</p>
+        <div class="quote">Say <em class="nw">remember: …</em> and the reason</div></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></div>
+        <h3>Picks up where you left off</h3><p>Every session ends with notes for the next one.</p>
+        <div class="quote">End each session with <em class="nw">/wrap-up</em></div></div>
+      <div class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M9 6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3z"/></svg></div>
+        <h3>Your own commands</h3><p>Anything you do twice becomes one word.</p>
+        <div class="quote">Say <em>make this a command</em></div></div>
+      <div class="card t2"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.3-4.3"/><path d="M8.5 11l2 2 3.5-3.5"/></svg></div>
+        <h3>A second opinion <span class="tag">Tier 2</span></h3><p>A reviewer that can only read checks work before it goes out.</p>
+        <div class="quote">Say <br><em class="long">have the reviewer check this</em></div></div>
+      <div class="card t2"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Guard rails <span class="tag">Tier 2</span></h3><p>Blocked from your secret files and from deleting in bulk.</p>
+        <div class="quote">Try it: ask it to open a <code>.env</code> file. It refuses.</div></div>
+      <div class="card t3" style="grid-column:1/-1; grid-template-columns:30px auto 1fr; align-items:center; padding:8px 12px;"><div class="icon" style="grid-row:auto"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></div>
+        <h3 style="white-space:nowrap">Works while you're away <span class="tag">Tier 3</span></h3><div class="quote" style="padding-left:6px">Say <em>every morning, summarise …</em> It drafts; nothing goes out without your OK.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Your starter commands</h2>
+    <div class="cmds">
+      <span class="cmd">/draft<small>email or letter in your voice</small></span>
+      <span class="cmd">/summarize<small>long doc → actions</small></span>
+      <span class="cmd">/tidy-sheet<small>clean a spreadsheet copy</small></span>
+      <span class="cmd">/explain<small>in plain words</small></span>
+      <span class="cmd">/plan-first<small>plan, then your OK</small></span>
+      <span class="cmd">/what-changed<small>review before saving</small></span>
+      <span class="hint">Lost? Ask <em>what can you do?</em> or type <em>/</em></span>
+    </div>
+  </section>
+
+  <section class="control">
+    <h2>You stay in control</h2>
+    <div class="ctl"><svg viewBox="0 0 24 24"><path d="M3 7h6l2 2h10v10H3z"/></svg><div>It works in <code>~/cogent</code> and <b>never sees folders you wall off</b>.</div></div>
+    <div class="ctl"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><div><b>It asks first</b> before the internet or changing its own rules.</div></div>
+    <div class="ctl"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><div>Passwords go in your <b>Mac Keychain</b>, never in the chat.</div></div>
+    <div class="ctl"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4z"/></svg><div>Emails and documents are <b>information, never orders</b>.</div></div>
+    <div class="ctl" style="grid-column:1/-1"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg><div><b>Full stop</b> (Tier 2 on): <code>touch ~/cogent/STOP</code>. Delete the file to restart.</div></div>
+    <div class="ask">Ask any time: <span class="q">what can you see?</span><span class="q">what leaves my computer?</span><span class="q">how do I turn you off?</span></div>
+  </section>
+
+  <footer><span>Your cogent · cheat sheet</span><span>Grow it later: ask “what could you do next?”</span></footer>
+</div>
+</body>
+</html>

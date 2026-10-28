@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "cleanupPeriodDays": 14,
+  "env": {
+    "DISABLE_TELEMETRY": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "DISABLE_FEEDBACK_COMMAND": "1",
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+  },
+  "permissions": {
+    "defaultMode": "default",
+    "disableBypassPermissionsMode": "disable",
+    "disableAutoMode": "disable",
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.config/gcloud/**)",
+      "Read(~/Library/Keychains/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/id_rsa*)",
+      "Read(~/.netrc)",
+      "Read(~/.git-credentials)",
+      "Read(~/.npmrc)",
+      "Read(~/.pypirc)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.docker/**)",
+      "Read(~/.kube/**)",
+      "Read(~/.claude.json)",
+      "Read(~/.claude/.credentials.json)",
+      "Read(~/.zsh_history)",
+      "Read(~/.bash_history)",
+      "Read(~/Library/Application Support/Google/**)",
+      "Read(~/Library/Application Support/Firefox/**)",
+      "Read(~/Library/Safari/**)",
+      "Read(~/Library/Cookies/**)",
+      "Read(~/Library/Messages/**)",
+      "Read(~/Library/Mail/**)",
+      "Read(**/*.p12)",
+      "Read(**/*.pfx)",
+      "Read(**/*.kdbx)",
+      "Read(**/id_ed25519*)",
+      "Read(**/.pgpass)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Edit(~/.ssh/**)",
+      "Edit(~/.aws/**)",
+      "Edit(~/.netrc)",
+      "Edit(~/.git-credentials)",
+      "Edit(~/.npmrc)",
+      "Edit(~/.pypirc)",
+      "Edit(~/.gnupg/**)",
+      "Edit(~/.config/gh/**)",
+      "Edit(~/.docker/**)",
+      "Edit(~/.kube/**)",
+      "Edit(~/.claude.json)",
+      "Read(~/Documents/**)",
+      "Read(~/Desktop/**)",
+      "Read(~/Downloads/**)",
+      "Read(~/Pictures/**)",
+      "Read(~/Library/**)",
+      "Edit(~/Documents/**)",
+      "Edit(~/Desktop/**)",
+      "Edit(~/Downloads/**)",
+      "Edit(~/Pictures/**)",
+      "Edit(~/Library/**)",
+      "Bash(security find-generic-password *)",
+      "Bash(security find-internet-password *)",
+      "Bash(security dump-keychain *)",
+      "Bash(printenv)",
+      "Bash(printenv *)",
+      "Bash(env)",
+      "Bash(cat ~/.ssh/*)",
+      "Bash(cat ~/.aws/*)",
+      "mcp__*",
+      "Edit(~/cogent/audit/**)",
+      "Edit(~/cogent/STOP)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(rm *)",
+      "Bash(sudo *)",
+      "Bash(npm install *)",
+      "Bash(npm i *)",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(brew install *)",
+      "Bash(npx *)",
+      "WebFetch",
+      "WebSearch",
+      "Bash(osascript *)",
+      "Bash(launchctl *)",
+      "Bash(crontab *)",
+      "Bash(git remote *)",
+      "Bash(defaults *)"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": false,
+    "allowUnsandboxedCommands": false,
+    "filesystem": {
+      "denyRead": [
+        "~/Documents",
+        "~/Desktop",
+        "~/Downloads",
+        "~/Pictures",
+        "~/Library",
+        "~/.ssh",
+        "~/.aws",
+        "~/.gnupg",
+        "~/.config/gcloud",
+        "~/.config/gh",
+        "~/.kube",
+        "~/.docker"
+      ],
+      "denyWrite": [
+        "~/cogent/audit",
+        "~/cogent/canary",
+        "~/cogent/decoy"
+      ]
+    },
+    "network": {
+      "allowedDomains": []
+    }
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"__HOME__/.claude/hooks/guard.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"__HOME__/.claude/hooks/audit-log.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"__HOME__/cogent/bin/brain-load.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

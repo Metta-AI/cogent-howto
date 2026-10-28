@@ -1,0 +1,42 @@
+# Secrets. Never commit these.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Claude Code files that are personal to this machine
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Logs, drafts and working folders. They may contain commands you ran or private text.
+audit/
+logs/
+*.log
+outbox/
+drafts/
+work/
+mailbox/
+lanes/
+/canary/
+/decoy/
+backups/
+jobs-workdir/
+launchd/
+.brain-tidy.lock/
+
+# The how-to package you copied in. It is not your work.
+howto/
+
+# Switch file and backups
+STOP
+*.bak-*
+
+# macOS
+.DS_Store
+
+# Load stamp
+brain/.full-stamp
+.scout-needed

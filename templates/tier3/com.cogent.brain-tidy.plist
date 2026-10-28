@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.cogent.brain-tidy</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string><<HOME>>/cogent/bin/brain-tidy.sh</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>3</integer>
+    <key>Minute</key>
+    <integer>15</integer>
+  </dict>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:<<HOME>>/.local/bin</string>
+    <key>COGENT_HOME</key>
+    <string><<HOME>>/cogent</string>
+    <key>COGENT_HEADLESS</key>
+    <string>1</string>
+  </dict>
+  <key>StandardOutPath</key>
+  <string><<HOME>>/cogent/logs/brain-tidy.out</string>
+  <key>StandardErrorPath</key>
+  <string><<HOME>>/cogent/logs/brain-tidy.err</string>
+</dict>
+</plist>
